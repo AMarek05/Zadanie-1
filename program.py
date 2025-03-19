@@ -1,6 +1,5 @@
 import random
 import time
-from copy import deepcopy
 
 def manual():
     # Zwraca listę (n <= 10) wprowadzonych liczb całkowitych
@@ -45,18 +44,6 @@ def gen(algo):
             for i in range(10):
                 print(f"{i}.")
                 posort(algo, sorted(losowa(n), reverse=True))
-        case 5:
-            for i in range(10):
-                print(f"{i}.")
-                lista = losowa(n)
-                lista = sorted(lista)
-
-                środ = (len(lista) - 1) // 2
-                l = lista[:środ + 1][::-1]
-                p = lista[środ + 1:]
-
-                tab = l + p
-                posort(algo, tab)
         case 4:
             for i in range(10):
                 print(f"{i}.")
@@ -68,6 +55,18 @@ def gen(algo):
                 p = lista[środ:]
 
                 p.reverse()
+                tab = l + p
+                posort(algo, tab)
+        case 5:
+            for i in range(10):
+                print(f"{i}.")
+                lista = losowa(n)
+                lista = sorted(lista)
+
+                środ = (len(lista) - 1) // 2
+                l = lista[:środ + 1][::-1]
+                p = lista[środ + 1:]
+
                 tab = l + p
                 posort(algo, tab)
     print()
@@ -116,7 +115,7 @@ def insertion_sort_g(tab, gap):
     for i in range(gap, n):
         temp = tab[i]
         j = i
-        # Stosujemy insertion sort dla mniejszych niż gap
+        # Stosujemy insertion sort
         while j >= gap and tab[j - gap] < temp:
             tab[j] = tab[j - gap]
             j -= gap
